@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react'
 import { CountryPicker, Cards, Chart } from './Components'
 import { useCountries, useCountryData, useDailyData } from './api'
+import { Container } from '@material-ui/core'
 import image from './image.png'
 
 const App = () => {
@@ -16,12 +17,12 @@ const App = () => {
   // console.log({ dailyData, countries, countryData })
 
   return (
-    <main>
+    <Container>
       <img src={image} alt='COVID-19' />
       <CountryPicker countries={countries} onChange={onCountryChangeHandler} />
       <Cards countryData={countryData} />
       <Chart countryData={countryData} dailyData={dailyData} />
-    </main>
+    </Container>
   )
 }
 
