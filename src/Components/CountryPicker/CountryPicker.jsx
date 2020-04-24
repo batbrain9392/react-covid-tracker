@@ -9,7 +9,7 @@ const CountryPicker = ({ countries, onChange }) => {
 
   return (
     <select onChange={onChangeHandler}>
-      <option value=''>Global</option>
+      <option value=''>The World</option>
       {countries.map((country) => (
         <option value={country} key={country}>
           {country}
