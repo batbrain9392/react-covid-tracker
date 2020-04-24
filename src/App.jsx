@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react'
 import { CountryPicker, Cards, Chart } from './Components'
 import { useCountries, useCountryData, useDailyData } from './api'
+import image from './image.png'
 
 const App = () => {
   const [country, setCountry] = useState('')
@@ -16,6 +17,7 @@ const App = () => {
 
   return (
     <main>
+      <img src={image} alt='COVID-19' />
       <CountryPicker countries={countries} onChange={onCountryChangeHandler} />
       <Cards countryData={countryData} />
       <Chart countryData={countryData} dailyData={dailyData} />
