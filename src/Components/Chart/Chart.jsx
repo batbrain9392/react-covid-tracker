@@ -1,4 +1,5 @@
 import React, { memo } from 'react'
+import Grid from '@material-ui/core/Grid'
 import BarChart from './BarChart/BarChart'
 import LineChart from './LineChart/LineChart'
 
@@ -9,6 +10,14 @@ const Chart = ({ countryData, dailyData }) => {
     <>
       <BarChart data={countryData} />
       <LineChart data={dailyData} />
+      {/* <Grid container justify='center' alignItems='center' spacing={10}>
+        <Grid item>
+          <BarChart data={countryData} />
+        </Grid>
+        <Grid item>
+          <LineChart data={dailyData} />
+        </Grid>
+      </Grid> */}
     </>
   )
 }
