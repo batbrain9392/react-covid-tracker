@@ -1,11 +1,14 @@
 import React, { memo } from 'react'
+import BarChart from './BarChart/BarChart'
+import LineChart from './LineChart/LineChart'
 
 const Chart = ({ countryData, dailyData }) => {
   // console.log({ Chart: { dailyData, countryData } })
+
   return (
     <>
-      <pre>{JSON.stringify(countryData, null, 2)}</pre>
-      <pre>{JSON.stringify(dailyData, null, 2)}</pre>
+      <BarChart data={countryData} />
+      <LineChart data={dailyData} />
     </>
   )
 }
