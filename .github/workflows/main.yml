@@ -24,7 +24,7 @@ jobs:
         run: yarn build
 
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@3.4.2
+        uses: JamesIves/github-pages-deploy-action@3.4.8
         with:
           ACCESS_TOKEN: ${{ secrets.GH_TOKEN }}
           BRANCH: gh-pages
