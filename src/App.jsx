@@ -1,8 +1,8 @@
 import React, { useState, useCallback } from 'react'
-import { CountryPicker, Cards, BarChart, LineChart } from './Components'
-import { useCountries, useCountryData, useDailyData } from './api'
 import Container from '@material-ui/core/Container'
 import Box from '@material-ui/core/Box'
+import { CountryPicker, Cards, BarChart, LineChart } from './Components'
+import { useCountries, useCountryData, useDailyData } from './api'
 import image from './image.png'
 
 const App = () => {
