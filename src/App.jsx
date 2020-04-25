@@ -1,8 +1,8 @@
 import React, { useState, useCallback } from 'react'
-import { CountryPicker, Cards, Chart } from './Components'
-import { useCountries, useCountryData, useDailyData } from './api'
 import Container from '@material-ui/core/Container'
 import Box from '@material-ui/core/Box'
+import { CountryPicker, Cards, BarChart, LineChart } from './Components'
+import { useCountries, useCountryData, useDailyData } from './api'
 import image from './image.png'
 
 const App = () => {
@@ -15,11 +15,9 @@ const App = () => {
     setCountry(value)
   }, [])
 
-  // console.log({ dailyData, countries, countryData })
-
   return (
-    <Container>
-      <Box my={10}>
+    <Container maxWidth='md'>
+      <Box my={7}>
         <Box mb={5} textAlign='center'>
           <img src={image} alt='COVID-19' />
         </Box>
@@ -28,7 +26,11 @@ const App = () => {
           onChange={onCountryChangeHandler}
         />
         <Cards countryData={countryData} />
-        <Chart countryData={countryData} dailyData={dailyData} />
+        {country ? (
+          <BarChart data={countryData} />
+        ) : (
+          <LineChart data={dailyData} />
+        )}
       </Box>
     </Container>
   )

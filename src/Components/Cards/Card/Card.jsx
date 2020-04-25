@@ -9,11 +9,7 @@ import CountUp from 'react-countup'
 const useStyles = makeStyles({
   root: {
     minWidth: 170,
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
+    height: '100%',
   },
   title: {
     fontSize: 14,

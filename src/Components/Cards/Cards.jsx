@@ -1,23 +1,14 @@
 import React, { memo } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 import Card from './Card/Card'
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-}))
-
 const Cards = ({ countryData }) => {
-  // console.log({ Cards: countryData })
-  const classes = useStyles()
   if (!countryData) return null
 
   return (
-    <Box mb={3}>
-      <Grid container justify='center' className={classes.root} spacing={2}>
+    <Box mb={5}>
+      <Grid container justify='center' spacing={2}>
         <Card
           header='Infected'
           count={countryData.confirmed}

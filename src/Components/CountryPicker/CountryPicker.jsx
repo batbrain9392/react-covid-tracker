@@ -6,15 +6,13 @@ import InputLabel from '@material-ui/core/InputLabel'
 import Select from '@material-ui/core/Select'
 
 const CountryPicker = ({ countries, onChange }) => {
-  // console.log({ CountryPicker: countries })
-
   const onChangeHandler = (event) => {
     const value = event.target.value
     onChange(value)
   }
 
   return (
-    <Box mb={3}>
+    <Box mb={5}>
       <Grid container justify='center'>
         <FormControl>
           <InputLabel shrink htmlFor='location'>

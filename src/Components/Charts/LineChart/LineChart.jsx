@@ -20,7 +20,17 @@ const LineChart = ({ data }) => {
   }
   const lineDatasets = [lineDatasetConfirmed, lineDatasetDeaths]
 
-  return <Line data={{ labels: lineLabels, datasets: lineDatasets }} />
+  return (
+    <Line
+      data={{ labels: lineLabels, datasets: lineDatasets }}
+      options={{
+        title: {
+          display: true,
+          text: 'Current state of the World',
+        },
+      }}
+    />
+  )
 }
 
 export default memo(LineChart)

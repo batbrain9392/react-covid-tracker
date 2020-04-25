@@ -24,7 +24,7 @@ export const useCountryData = (country) => {
     const getData = async () => {
       const { data } = await axios.get(country ? `/countries/${country}` : '/')
       setData({
-        country: country || 'the World',
+        country: country,
         confirmed: data.confirmed.value,
         recovered: data.recovered.value,
         deaths: data.deaths.value,
