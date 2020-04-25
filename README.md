@@ -1,3 +1,5 @@
+![CICD](https://github.com/batbrain9392/react-covid-tracker/workflows/CICD/badge.svg)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
