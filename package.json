@@ -12,12 +12,6 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1"
   },
-  "devDependencies": {
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.2",
-    "jest-enzyme": "^7.1.2",
-    "react-test-renderer": "^16.13.1"
-  },
   "homepage": "http://batbrain9392.github.io/react-covid-tracker",
   "scripts": {
     "start": "react-scripts start",
