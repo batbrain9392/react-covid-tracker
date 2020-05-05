@@ -16,23 +16,34 @@ const App = () => {
   }, [])
 
   return (
-    <Container maxWidth='md'>
-      <Box my={7}>
-        <Box mb={5} textAlign='center'>
-          <img src={image} alt='COVID-19' />
+    <>
+      <a
+        className='github-fork-ribbon'
+        href='https://github.com/batbrain9392/react-covid-tracker'
+        data-ribbon='GitHub'
+        title='GitHub'
+        target='_blank'
+        rel='noreferrer noopener'>
+        GitHub
+      </a>
+      <Container maxWidth='md'>
+        <Box my={7}>
+          <Box mb={5} textAlign='center'>
+            <img src={image} alt='COVID-19' />
+          </Box>
+          <CountryPicker
+            countries={countries}
+            onChange={onCountryChangeHandler}
+          />
+          <Cards countryData={countryData} />
+          {country ? (
+            <BarChart data={countryData} />
+          ) : (
+            <LineChart data={dailyData} />
+          )}
         </Box>
-        <CountryPicker
-          countries={countries}
-          onChange={onCountryChangeHandler}
-        />
-        <Cards countryData={countryData} />
-        {country ? (
-          <BarChart data={countryData} />
-        ) : (
-          <LineChart data={dailyData} />
-        )}
-      </Box>
-    </Container>
+      </Container>
+    </>
   )
 }
 

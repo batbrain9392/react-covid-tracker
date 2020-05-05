@@ -3,10 +3,10 @@ import { render, fireEvent } from '@testing-library/react'
 import CountryPicker from './CountryPicker'
 
 function setup() {
-  const onCountryChangeHandler = jest.fn()
+  const onChange = jest.fn()
   const countries = ['India', 'Ireland']
   const utils = render(
-    <CountryPicker countries={countries} onChange={onCountryChangeHandler} />
+    <CountryPicker countries={countries} onChange={onChange} />
   )
   const changeCountry = (value) =>
     fireEvent.change(utils.getByRole('combobox'), {
@@ -15,7 +15,7 @@ function setup() {
 
   return {
     ...utils,
-    onCountryChangeHandler,
+    onChange,
     countries,
     changeCountry,
   }
@@ -31,9 +31,9 @@ test('renders the country dropdown', () => {
 })
 
 test('calls onChange with selected value when an option is selected', () => {
-  const { countries, onCountryChangeHandler } = setup()
+  const { countries, changeCountry, onChange } = setup()
 
-  onCountryChangeHandler(countries[0])
+  changeCountry(countries[0])
 
-  expect(onCountryChangeHandler).toHaveBeenCalledWith(countries[0])
+  expect(onChange).toHaveBeenCalledWith(countries[0])
 })
