@@ -2,6 +2,8 @@ import { renderHook } from '@testing-library/react-hooks'
 import { useCountries } from './index'
 import axiosMock from 'axios'
 
+jest.mock('axios')
+
 test('useCountries hook should return string array of country names', async () => {
   axiosMock.get.mockResolvedValueOnce({
     data: {
