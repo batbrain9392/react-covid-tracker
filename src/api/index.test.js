@@ -4,47 +4,48 @@ import axiosMock from 'axios'
 
 jest.mock('axios')
 
-test('useCountries hook should return a string array of country names', async () => {
-  axiosMock.get.mockResolvedValueOnce({
-    data: {
-      countries: [
-        { name: 'India', iso2: 'IN', iso3: 'IND' },
-        { name: 'Ireland', iso2: 'IE', iso3: 'IRL' },
-      ],
-    },
-  })
-  const { result, waitForNextUpdate } = renderHook(() => useCountries())
-
-  await waitForNextUpdate()
-
-  expect(result.current).toEqual(['India', 'Ireland'])
-})
-
-test('useCountryData hook should return data for the provided country', async () => {
-  axiosMock.get.mockResolvedValueOnce({
-    data: {
-      confirmed: {
-        value: 46476,
-        detail: 'https://covid19.mathdro.id/api/countries/India/confirmed',
-      },
-      recovered: {
-        value: 12849,
-        detail: 'https://covid19.mathdro.id/api/countries/India/recovered',
-      },
-      deaths: {
-        value: 1571,
-        detail: 'https://covid19.mathdro.id/api/countries/India/deaths',
-      },
-      lastUpdate: '2020-05-05T12:32:31.000Z',
-    },
-  })
+async function setup(mockData, customHook, customHookParam) {
+  axiosMock.get.mockResolvedValueOnce({ data: mockData })
   const { result, waitForNextUpdate } = renderHook(() =>
-    useCountryData('India')
+    customHook(customHookParam)
   )
 
   await waitForNextUpdate()
 
-  expect(result.current).toEqual({
+  return result.current
+}
+
+test('useCountries hook should return a string array of country names', async () => {
+  const mockCountryList = {
+    countries: [
+      { name: 'India', iso2: 'IN', iso3: 'IND' },
+      { name: 'Ireland', iso2: 'IE', iso3: 'IRL' },
+    ],
+  }
+  const result = await setup(mockCountryList, useCountries)
+
+  expect(result).toEqual(['India', 'Ireland'])
+})
+
+test('useCountryData hook should return data for the provided country', async () => {
+  const mockCountryData = {
+    confirmed: {
+      value: 46476,
+      detail: 'https://covid19.mathdro.id/api/countries/India/confirmed',
+    },
+    recovered: {
+      value: 12849,
+      detail: 'https://covid19.mathdro.id/api/countries/India/recovered',
+    },
+    deaths: {
+      value: 1571,
+      detail: 'https://covid19.mathdro.id/api/countries/India/deaths',
+    },
+    lastUpdate: '2020-05-05T12:32:31.000Z',
+  }
+  const result = await setup(mockCountryData, useCountryData, 'India')
+
+  expect(result).toEqual({
     country: 'India',
     confirmed: 46476,
     recovered: 12849,
@@ -54,7 +55,7 @@ test('useCountryData hook should return data for the provided country', async ()
 })
 
 test('useDailyData hook should return an object array of daily data', async () => {
-  const data = [
+  const mockDailyData = [
     {
       totalConfirmed: 555,
       mainlandChina: 548,
@@ -88,10 +89,7 @@ test('useDailyData hook should return an object array of daily data', async () =
       reportDate: '2020-01-23',
     },
   ]
-  axiosMock.get.mockResolvedValueOnce({ data })
-  const { result, waitForNextUpdate } = renderHook(() => useDailyData())
+  const result = await setup(mockDailyData, useDailyData)
 
-  await waitForNextUpdate()
-
-  expect(result.current).toEqual(data)
+  expect(result).toEqual(mockDailyData)
 })
