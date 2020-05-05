@@ -24,6 +24,7 @@ test('useCountries hook should return a string array of country names', async ()
   }
   const result = await setup(mockCountryList, useCountries)
 
+  expect(axiosMock.get).toHaveBeenLastCalledWith('/countries')
   expect(result).toEqual(['India', 'Ireland'])
 })
 
@@ -45,6 +46,7 @@ test('useCountryData hook should return data for the provided country', async ()
   }
   const result = await setup(mockCountryData, useCountryData, 'India')
 
+  expect(axiosMock.get).toHaveBeenLastCalledWith('/countries/India')
   expect(result).toEqual({
     country: 'India',
     confirmed: 46476,
@@ -91,5 +93,6 @@ test('useDailyData hook should return an object array of daily data', async () =
   ]
   const result = await setup(mockDailyData, useDailyData)
 
+  expect(axiosMock.get).toHaveBeenLastCalledWith('/daily')
   expect(result).toEqual(mockDailyData)
 })
